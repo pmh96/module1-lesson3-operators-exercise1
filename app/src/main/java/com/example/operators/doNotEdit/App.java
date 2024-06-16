@@ -8,11 +8,17 @@ import com.example.operators.editHere.OperatorLogic;
 /* ### READ CAREFULLY! ###
  * Instructions:
  * 
- * Do not edit the main method!
- * Do not edit anything else than the methods:
- *  - checkForAge(...)
- *  - checkForCitizenship(...)
- *  - checkFor
+ * Do not edit anything except the class OperatorLogic.java or otherwise the test and the assignment will fail!
+ * 
+ * Read the instructions in the class OperatorLogic.java!
+ * 
+ * To test your code, open up a terminal window in Visual Studio (Main menu > Terminal > New Terminal)
+ * Go to the root directory of the project. Its the directory where you the sub-directory "app" and the file "gradlew"
+ * MaxOS / Linux: run the command "./gradlew build" and then "./gradlew test"
+ * Windows: run the command "gradlew.bat build" and then "gradlew.bat test"
+ * 
+ * You can also run the AppTest.java Unit tests directly in the class if you want.
+ * Before you submit your assignment, make sure that both the gradle build and the gradle test are successful!  
  */
 
 public class App {
@@ -26,7 +32,9 @@ public class App {
         System.out.print("Are you a citizen? (true/false): ");
         boolean isCitizen = InputScanner.scanForIsCitizen();
 
-        OperatorLogic.printOutput(age, isCitizen);
+        TextsToPrint textsToPrint = new TextsToPrint();
+        OperatorLogic operatorLogic = new OperatorLogic(textsToPrint);
+        operatorLogic.printOutput(age, isCitizen);
         // *****************************************
     }
 }

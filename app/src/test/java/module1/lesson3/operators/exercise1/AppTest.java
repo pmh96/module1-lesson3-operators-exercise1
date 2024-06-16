@@ -3,51 +3,97 @@
  */
 package module1.lesson3.operators.exercise1;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.verify;
 
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
-
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
+import org.mockito.Mockito;
 
+import com.example.operators.doNotEdit.TextsToPrint;
 import com.example.operators.editHere.OperatorLogic;
 
 class AppTest {
-    private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-    private final PrintStream originalOut = System.out;
 
-    @BeforeEach
-    public void setUpStreams() {
-        System.setOut(new PrintStream(outContent));
-    }
-
-    @ParameterizedTest
-    @CsvSource({
-            "15, false, You are neither allowed to drive nor are you allowed to vote.",
-            "16, true, You are allowed to vote.\nYou are not allowed to drive, but you are allowed to vote.",
-            "17, false, You are neither allowed to drive nor are you allowed to vote.",
-            "18, true, You are allowed to vote.\nYou are allowed to drive.",
-            "19, false, You are allowed to drive.\nYou are not allowed to vote, but you are allowed to drive."
-    })
-    public void testPrintOutput(int age, boolean isCitizen, String expectedOutput) {
-        OperatorLogic.printOutput(age, isCitizen);
-        assertEquals(expectedOutput, outContent.toString().trim()); // Remove any potential extra whitespace
-        outContent.reset(); // Clear the output stream for the next test
-    }
-
-    // Additional test for a case where none of the conditions are met (optional)
     @Test
-    public void testNoneOfTheConditionsMet() {
-        OperatorLogic.printOutput(25, true);
-        assertEquals("You are allowed to vote.\nYou are allowed to drive.", outContent.toString().trim());
+    public void testWithAge15AndCitizenFalse() {
+        // Create a mock of TextsToPrint
+        TextsToPrint mockTextsToPrint = Mockito.mock(TextsToPrint.class);
+
+        // Call the printOutput method with the mock
+        OperatorLogic operatorLogic = new OperatorLogic(mockTextsToPrint);
+        // getTextForAllowedToDoNothing should be called
+        operatorLogic.printOutput(15, false);
+
+        // Verify the correct methods were called
+        verify(mockTextsToPrint).getTextForAllowedToDoNothing();
     }
 
-    @AfterEach
-    public void restoreStreams() {
-        System.setOut(originalOut);
+    @Test
+    public void testWithAge16AndCitizenTrue() {
+        // Create a mock of TextsToPrint
+        TextsToPrint mockTextsToPrint = Mockito.mock(TextsToPrint.class);
+
+        // Call the printOutput method with the mock
+        OperatorLogic operatorLogic = new OperatorLogic(mockTextsToPrint);
+        operatorLogic.printOutput(16, true);
+
+        // Verify the correct methods were called
+        verify(mockTextsToPrint).getTextForAllowedToVote();
+        verify(mockTextsToPrint).getTextForAllowedToVoteButNotDrive();
+    }
+
+    @Test
+    public void testWithAge17AndCitizenFalse() {
+        // Create a mock of TextsToPrint
+        TextsToPrint mockTextsToPrint = Mockito.mock(TextsToPrint.class);
+
+        // Call the printOutput method with the mock
+        OperatorLogic operatorLogic = new OperatorLogic(mockTextsToPrint);
+        operatorLogic.printOutput(17, false);
+
+        // Verify the correct methods were called
+        verify(mockTextsToPrint).getTextForAllowedToDoNothing();
+    }
+
+    @Test
+    public void testWithAge18AndCitizenTrue() {
+        // Create a mock of TextsToPrint
+        TextsToPrint mockTextsToPrint = Mockito.mock(TextsToPrint.class);
+
+        // Call the printOutput method with the mock
+        OperatorLogic operatorLogic = new OperatorLogic(mockTextsToPrint);
+        operatorLogic.printOutput(18, true);
+
+        // Verify the correct methods were called
+        verify(mockTextsToPrint).getTextForAllowedToVote();
+        verify(mockTextsToPrint).getTextForAllowedToDrive();
+    }
+
+    @Test
+    public void testWithAge19AndCitizenFalse() {
+        // Create a mock of TextsToPrint
+        TextsToPrint mockTextsToPrint = Mockito.mock(TextsToPrint.class);
+
+        // Call the printOutput method with the mock
+        OperatorLogic operatorLogic = new OperatorLogic(mockTextsToPrint);
+        // getTextForAllowedToDoNothing should be called
+        operatorLogic.printOutput(19, false);
+
+        // Verify the correct methods were called
+        verify(mockTextsToPrint).getTextForAllowedToDrive();
+        verify(mockTextsToPrint).getTextForAllowedToDriveButNotVote();
+    }
+
+    @Test
+    public void testWithAge15AndCitizenTrue() {
+        // Create a mock of TextsToPrint
+        TextsToPrint mockTextsToPrint = Mockito.mock(TextsToPrint.class);
+
+        // Call the printOutput method with the mock
+        OperatorLogic operatorLogic = new OperatorLogic(mockTextsToPrint);
+        // getTextForAllowedToDoNothing should be called
+        operatorLogic.printOutput(15, true);
+
+        // Verify the correct methods were called
+        verify(mockTextsToPrint).getTextForAllowedToDoNothing();
     }
 }

@@ -24,17 +24,12 @@ import com.example.operators.editHere.OperatorLogic;
 public class App {
     public static void main(String[] args) {
         // **** DO NOT EDIT THE MAIN METHID CODE ****
-        // **** ONLY EDIT THE FUNCTIONS LIKE "checkForCitizenship(...)" or
-        // "checkForAge(...)" ****
-        System.out.print("Enter your age: ");
-        int age = InputScanner.scanForAge();
-
-        System.out.print("Are you a citizen? (true/false): ");
-        boolean isCitizen = InputScanner.scanForIsCitizen();
+        InputScanner inputScanner = new InputScanner();
+        InputPojo input = inputScanner.scanForInput();
 
         TextsToPrint textsToPrint = new TextsToPrint();
         OperatorLogic operatorLogic = new OperatorLogic(textsToPrint);
-        operatorLogic.printOutput(age, isCitizen);
+        operatorLogic.printOutput(input.getAge(), input.isCitizen());
         // *****************************************
     }
 }

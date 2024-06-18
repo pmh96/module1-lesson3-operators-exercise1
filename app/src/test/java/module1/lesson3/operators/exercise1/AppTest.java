@@ -3,7 +3,7 @@
  */
 package module1.lesson3.operators.exercise1;
 
-import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.*;
 
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -11,11 +11,10 @@ import org.mockito.Mockito;
 import com.example.operators.doNotEdit.TextsToPrint;
 import com.example.operators.editHere.OperatorLogic;
 
-class AppTest {
+public class AppTest {
 
     @Test
     public void testWithAge15AndCitizenFalse() {
-        // Create a mock of TextsToPrint
         TextsToPrint mockTextsToPrint = Mockito.mock(TextsToPrint.class);
 
         // Call the printOutput method with the mock
@@ -29,9 +28,7 @@ class AppTest {
 
     @Test
     public void testWithAge16AndCitizenTrue() {
-        // Create a mock of TextsToPrint
         TextsToPrint mockTextsToPrint = Mockito.mock(TextsToPrint.class);
-
         // Call the printOutput method with the mock
         OperatorLogic operatorLogic = new OperatorLogic(mockTextsToPrint);
         operatorLogic.printOutput(16, true);
@@ -43,9 +40,7 @@ class AppTest {
 
     @Test
     public void testWithAge17AndCitizenFalse() {
-        // Create a mock of TextsToPrint
         TextsToPrint mockTextsToPrint = Mockito.mock(TextsToPrint.class);
-
         // Call the printOutput method with the mock
         OperatorLogic operatorLogic = new OperatorLogic(mockTextsToPrint);
         operatorLogic.printOutput(17, false);
@@ -56,9 +51,7 @@ class AppTest {
 
     @Test
     public void testWithAge18AndCitizenTrue() {
-        // Create a mock of TextsToPrint
         TextsToPrint mockTextsToPrint = Mockito.mock(TextsToPrint.class);
-
         // Call the printOutput method with the mock
         OperatorLogic operatorLogic = new OperatorLogic(mockTextsToPrint);
         operatorLogic.printOutput(18, true);
@@ -70,9 +63,7 @@ class AppTest {
 
     @Test
     public void testWithAge19AndCitizenFalse() {
-        // Create a mock of TextsToPrint
         TextsToPrint mockTextsToPrint = Mockito.mock(TextsToPrint.class);
-
         // Call the printOutput method with the mock
         OperatorLogic operatorLogic = new OperatorLogic(mockTextsToPrint);
         // getTextForAllowedToDoNothing should be called
@@ -85,9 +76,7 @@ class AppTest {
 
     @Test
     public void testWithAge15AndCitizenTrue() {
-        // Create a mock of TextsToPrint
         TextsToPrint mockTextsToPrint = Mockito.mock(TextsToPrint.class);
-
         // Call the printOutput method with the mock
         OperatorLogic operatorLogic = new OperatorLogic(mockTextsToPrint);
         // getTextForAllowedToDoNothing should be called

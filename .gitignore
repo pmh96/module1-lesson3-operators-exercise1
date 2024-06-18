@@ -1,7 +1,6 @@
 .gradle
 **/build/
 !src/**/build/
-.class
 
 # Ignore Gradle GUI config
 gradle-app.setting
@@ -21,6 +20,10 @@ gradle-app.setting
 # JDT-specific (Eclipse Java Development Tools)
 .classpath
 
-# Ignore Gradle build output directory
-build
+# Compiled class file
+*.class
+.class
+
+# Log file
+*.log
 .DS_Store
